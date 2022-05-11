@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starwars Api using Ajax</title>
+  </head>
+  <body>
+    <button id="button">Load People</button>
+    <br /><br />
+    <h1>users</h1>
+    <div id="users"></div>
+
+    <script>
+      document.getElementById("button").addEventListener("click", loadUsers);
+
+      //load Github Users
+
+      function loadUsers() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://swapi.dev/api/people", true);
+        xhr.onload = function () {
+          if (this.status == 200) {
+            var users = JSON.parse(this.responseText);
+
+            var output = "";
+            for (let i in users) {
+              output +=
+                '<div class="users">' +
+                '<img src="' +
+                users[i].avatar_url +
+                '" width="70" height="70">' +
+                "<ul>";
+                     
+            }
+          }
+        };
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
